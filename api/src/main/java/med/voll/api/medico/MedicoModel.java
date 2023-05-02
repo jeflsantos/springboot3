@@ -13,7 +13,7 @@ import med.voll.api.endereco.Endereco;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Medico {
+public class MedicoModel {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,7 +32,7 @@ public class Medico {
     private boolean ativo;
 
 
-    public Medico(DadosCadastroMedico dados) {
+    public MedicoModel(DadosCadastroMedico dados) {
         this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
