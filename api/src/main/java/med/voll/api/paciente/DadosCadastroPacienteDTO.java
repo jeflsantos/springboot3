@@ -3,9 +3,9 @@ package med.voll.api.paciente;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import med.voll.api.endereco.DadosEndereco;
+import med.voll.api.endereco.DadosEnderecoDTO;
 
-public record DadosCadastroPaciente(
+public record DadosCadastroPacienteDTO(
         @NotBlank
         String nome,
         @NotBlank
@@ -16,5 +16,5 @@ public record DadosCadastroPaciente(
         @NotBlank
         @Pattern(regexp = "\\d{12}")
         String cpf,
-        DadosEndereco endereco) {
+        DadosEnderecoDTO endereco) {
 }

@@ -3,7 +3,7 @@ package med.voll.api.paciente;
 import jakarta.validation.constraints.NotNull;
 import med.voll.api.endereco.Endereco;
 
-public record DadosAtualizacaoPaciente(
+public record DadosAtualizacaoPacienteDTO(
         @NotNull
         Long id,
         String nome,

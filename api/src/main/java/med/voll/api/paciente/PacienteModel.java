@@ -25,7 +25,7 @@ public class PacienteModel {
     private Endereco endereco;
     private boolean ativo;
 
-    public PacienteModel(DadosCadastroPaciente dados) {
+    public PacienteModel(DadosCadastroPacienteDTO dados) {
     }
 
     public void excluir() {

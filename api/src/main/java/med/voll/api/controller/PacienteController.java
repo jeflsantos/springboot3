@@ -18,25 +18,25 @@ public class PacienteController {
     @Autowired
     private PacienteRepository repository;
 
-    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroPaciente dados, UriComponentsBuilder uriBuilder){
+    public ResponseEntity cadastrar(@RequestBody @Valid DadosCadastroPacienteDTO dados, UriComponentsBuilder uriBuilder){
         var paciente = new PacienteModel(dados);
         repository.save(paciente);
 
         var uri = uriBuilder.path("/pacientes/{id}").buildAndExpand(paciente.getId()).toUri();
-        return ResponseEntity.created(uri).body(new DadosDetalhamentoPaciente(paciente));
+        return ResponseEntity.created(uri).body(new DadosDetalhamentoPacienteDTO(paciente));
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemPaciente>> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable pag){
-        var page = repository.findAllByAtivoTrue(pag).map(DadosListagemPaciente::new);
+    public ResponseEntity<Page<DadosListagemPacienteDTO>> listar(@PageableDefault(size = 10, sort = {"nome"}) Pageable pag){
+        var page = repository.findAllByAtivoTrue(pag).map(DadosListagemPacienteDTO::new);
         return ResponseEntity.ok(page);
     }
 
     @PutMapping
     @Transactional
-    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoPaciente dados){
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoPacienteDTO dados){
         var paciente = repository.getReferenceById(dados.id());
-        return ResponseEntity.ok(new DadosDetalhamentoPaciente(paciente));
+        return ResponseEntity.ok(new DadosDetalhamentoPacienteDTO(paciente));
     }
 
     @DeleteMapping("/{id}")
@@ -50,7 +50,7 @@ public class PacienteController {
     @GetMapping("/{id}")
     public ResponseEntity detalhar(@PathVariable Long id){
         var paciente = repository.getReferenceById(id);
-        return ResponseEntity.ok(new DadosDetalhamentoPaciente(paciente));
+        return ResponseEntity.ok(new DadosDetalhamentoPacienteDTO(paciente));
     }
 
 
